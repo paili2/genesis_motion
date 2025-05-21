@@ -6,10 +6,10 @@ import ClipPath from "@/src/clipPath/ClipPath";
 import { useRef } from "react";
 
 export default function Home() {
-  const container = useRef<HTMLElement>(null);
-  const bodyRef = useRef<HTMLDivElement>(null);
+  const container = useRef<HTMLDivElement>(null);
+  const imgContainer = useRef<HTMLDivElement>(null);
 
-  const useImageY = (start: number, end: number): MotionValue => {
+  const y = (start: number, end: number): MotionValue => {
     const { scrollYProgress } = useScroll({
       target: container,
       offset: ["center start", "end end"],
@@ -17,14 +17,19 @@ export default function Home() {
     return useTransform(scrollYProgress, [start, end], ["0px", "-1000px"]);
   };
 
+  const useImageY = (start: number, end: number): MotionValue => {
+    const { scrollYProgress } = useScroll({
+      target: imgContainer,
+      offset: ["center start", "end end"],
+    });
+    return useTransform(scrollYProgress, [start, end], ["0px", "-1000px"]);
+  };
+
   return (
-    <div ref={bodyRef} className="w-full h-fit bg-black">
+    <div ref={container} className="w-full h-fit bg-black relative">
       <ClipPath></ClipPath>
-      <motion.section
-        ref={container}
-        className="h-[600vh] relative bg-transparent"
-      >
-        <motion.div className="sticky top-0 h-screen">
+      <motion.section className="h-[600vh] bg-transparent sticky top-0 right-0 left-0">
+        <motion.div ref={imgContainer} className="top-0 h-screen relative">
           <motion.div
             style={{ y: useImageY(0, 0.2) }}
             className="absolute w-[300px] h-fit top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10"

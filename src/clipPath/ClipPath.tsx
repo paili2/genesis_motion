@@ -1,10 +1,10 @@
 "use client";
 
 import ClipPathText from "@/src/clipPath/ClipPathText";
-import { useScroll, useTransform, motion } from "motion/react";
+import { useScroll, useTransform, motion, MotionValue } from "motion/react";
 
 const ClipPath = () => {
-  const useClipPath = (start: number, end: number) => {
+  const useClipPath = (start: number, end: number): MotionValue => {
     const { scrollYProgress } = useScroll();
     return useTransform(
       scrollYProgress,

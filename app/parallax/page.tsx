@@ -31,7 +31,7 @@ const Page = () => {
       >
         <motion.div
           style={{ y: useImageY(0.5, 1) }}
-          className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px]"
+          className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-fit h-fit"
         >
           <img className="object-cover" src="img1.jpg" alt="" />
         </motion.div>
